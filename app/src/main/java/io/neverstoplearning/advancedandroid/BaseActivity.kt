@@ -1,18 +1,14 @@
 package io.neverstoplearning.advancedandroid
 
 import android.os.Bundle
-import android.widget.ListAdapter
-import android.widget.SimpleAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.poc.poweradapter.adapter.RecyclerAdapter
 import com.poc.poweradapter.adapter.RecyclerDataSource
 import com.poc.poweradapter.item.ItemRenderer
 import com.poc.poweradapter.item.RecyclerItem
-import io.neverstoplearning.advancedandroid.base.BaseRenderer
 import io.neverstoplearning.advancedandroid.common.SelectableTextItem
 import io.neverstoplearning.advancedandroid.common.SelectableTextRenderer
-import io.neverstoplearning.advancedandroid.databinding.ItemSelectableTextBinding
 
 class BaseActivity : AppCompatActivity() {
 
@@ -30,7 +26,7 @@ class BaseActivity : AppCompatActivity() {
         val mRecyclerView = findViewById<RecyclerView>(R.id.view_item_list)
         val items = arrayListOf(mTestItem, mTestItem2, mTestItem3)
         val renderers = hashMapOf<String, ItemRenderer<RecyclerItem>>()
-        renderers[SelectableTextRenderer.tag] = SelectableTextRenderer()
+        renderers[SelectableTextRenderer.tag] = SelectableTextRenderer().getBaseRenderer()
         val dataSource = RecyclerDataSource(renderers)
         val adapter = RecyclerAdapter(dataSource)
         dataSource.attachToAdapter(adapter)
